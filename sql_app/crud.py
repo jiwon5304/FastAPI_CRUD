@@ -2,6 +2,10 @@ from sqlalchemy.orm import Session
 from . import models, schemas
 
 
+# add: 인스턴스 개체를 데이터베이스 세션에 추가
+# commit: 데이터베이스에 변경사항 저장
+# refresh: 생성된 id에 새 데이터 포함
+
 def get_user(db: Session, user_id: int):
     return db.query(models.User).filter(models.User.id == user_id).first()
 
@@ -33,3 +37,15 @@ def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
     db.commit()
     db.refresh(db_item)
     return db_item
+
+def update_item(db: Session, item: schemas.ItemUpdate, item_id: int):
+
+    for (key, value) in item:
+
+        db_item = db.query(models.Item).filter(models.Item.id == item_id)
+        setattr(db_item, key, value)
+
+#     # db.add(db_item)ㄴ
+#     # db.commit()s
+#     # db.refresh()
+    return 0

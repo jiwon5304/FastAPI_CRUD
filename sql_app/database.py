@@ -27,5 +27,5 @@ engine = create_engine(
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# 추후 클래스를 상속바다 데이터베이스의 모델이나 ORM 클래스를 생성
+# 추후 클래스를 상속받아 데이터베이스의 모델이나 ORM 클래스를 생성
 Base = declarative_base()
