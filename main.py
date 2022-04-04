@@ -73,4 +73,9 @@ def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 @app.put("/items/{item_id}/", response_model=schemas.Item)
 def update_item(item_id: int, item: schemas.ItemUpdate, db: Session = Depends(get_db)):
     items = crud.update_item(db, item, item_id)
-    return 0
+    return items
+
+@app.delete("/items/{item_id}/", response_model=schemas.Item)
+def delete_item(item_id: int, item: schemas.ItemDelete, db: Session = Depends(get_db)):
+    items = crud.delete_item(db, item, item_id)
+    return items

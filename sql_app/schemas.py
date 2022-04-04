@@ -14,6 +14,9 @@ class ItemCreate(ItemBase):
 class ItemUpdate(ItemBase):
     pass
 
+class ItemDelete(ItemBase):
+    pass
+
 
 class Item(ItemBase):
     id: int
